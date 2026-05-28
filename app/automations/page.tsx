@@ -2,6 +2,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
+import DarkModeToggle from "@/components/DarkModeToggle";
 import Link from "next/link";
 
 const patterns = [
@@ -25,6 +26,7 @@ export default function AutomationsPage() {
     <>
       <ScrollReveal />
       <Navbar />
+      <DarkModeToggle />
       <main style={{ maxWidth: "960px", margin: "0 auto", padding: "0 24px" }}>
 
         <section style={{ paddingTop: "120px", paddingBottom: "56px" }}>

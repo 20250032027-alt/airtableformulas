@@ -4,9 +4,9 @@ import Link from "next/link";
 
 const links = [
   { label: "Formula Cookbook", href: "/formulas" },
+  { label: "Guides", href: "/guides" },
   { label: "Automations", href: "/automations" },
   { label: "Alternatives", href: "/alternatives" },
-  { label: "Formula Builder", href: "/formula-builder" },
 ];
 
 export default function Navbar() {

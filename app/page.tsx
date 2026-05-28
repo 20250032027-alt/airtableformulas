@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import FormulaBuilder from "@/components/FormulaBuilder";
 import AlternativePicker from "@/components/AlternativePicker";
 import ScrollReveal from "@/components/ScrollReveal";
+import DarkModeToggle from "@/components/DarkModeToggle";
 import Link from "next/link";
 
 const formulaCards = [
@@ -101,6 +102,7 @@ export default function Home() {
     <>
       <ScrollReveal />
       <Navbar />
+      <DarkModeToggle />
 
       <main style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 24px" }}>
 

@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FormulaBuilder from "@/components/FormulaBuilder";
 import ScrollReveal from "@/components/ScrollReveal";
+import DarkModeToggle from "@/components/DarkModeToggle";
 
 const categories = [
   { name: "Date & Time", examples: ["Business days between dates", "Next Monday from today", "Age from birthdate", "Quarter from a date"] },
@@ -17,6 +18,7 @@ export default function FormulaBuilderPage() {
     <>
       <ScrollReveal />
       <Navbar />
+      <DarkModeToggle />
       <main style={{ maxWidth: "860px", margin: "0 auto", padding: "0 24px" }}>
         <section style={{ paddingTop: "120px", paddingBottom: "48px" }}>
           <div style={{ display: "inline-flex", alignItems: "center", gap: "6px", background: "var(--accent-subtle)", border: "1px solid rgba(212,98,42,0.2)", borderRadius: "999px", padding: "5px 14px", marginBottom: "20px", animation: "fadeUp 0.6s cubic-bezier(0.32,0.72,0,1) 0.1s both" }}>
