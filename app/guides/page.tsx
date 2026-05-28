@@ -7,6 +7,14 @@ import Link from "next/link";
 
 const guides = [
   {
+    href: "/automations",
+    title: "Automations Guide",
+    description: "When to use native Airtable automations vs Zapier vs Make. 16 real patterns with trigger, action, tool, and setup notes. Includes a filterable decision guide.",
+    badge: "Practical",
+    badgeColor: "#2A7D4F",
+    readTime: "8 min",
+  },
+  {
     href: "/guides/linked-records",
     title: "Linked Records Explained",
     description: "The concept that trips up almost every new Airtable user. What linked records actually are, when to use them vs a simple field, and the mistakes that cause data chaos later.",

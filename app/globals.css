@@ -84,3 +84,26 @@ body {
   .show-mobile   { display: none !important; }
   .hidden-mobile { display: flex !important; }
 }
+
+/* Dark mode explicit overrides for elements that don't pick up CSS vars automatically */
+[data-theme="dark"] code {
+  color: var(--accent) !important;
+}
+
+[data-theme="dark"] .formula-card-bg {
+  background: var(--bg-2) !important;
+}
+
+/* Complexity badges in dark mode */
+[data-theme="dark"] [style*="#E8F5E9"] {
+  background: #1A3A1A !important;
+  color: #6FCF97 !important;
+}
+[data-theme="dark"] [style*="#FFF8E1"] {
+  background: #2A2010 !important;
+  color: #F2C94C !important;
+}
+[data-theme="dark"] [style*="#FEEBE2"] {
+  background: #2A1208 !important;
+  color: #EB8A70 !important;
+}

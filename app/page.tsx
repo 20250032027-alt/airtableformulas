@@ -61,10 +61,10 @@ const contentSections = [
     badgeColor: "#D4622A",
   },
   {
-    title: "Automations Guide",
-    description: "When to use Zapier vs native Airtable automations, and why the answer changes based on what you are building. Covers 52 real automation patterns.",
-    href: "/automations",
-    badge: "Practical",
+    title: "Guides",
+    description: "Linked records explained, permissions without the seat spiral, pricing reality check, translation options, scripting basics. Built from 800 real community posts about what Airtable users keep getting stuck on.",
+    href: "/guides",
+    badge: "8 guides",
     badgeColor: "#2A7D4F",
   },
   {

@@ -6,64 +6,62 @@ import ScrollReveal from "@/components/ScrollReveal";
 import Link from "next/link";
 
 const planComparison = [
-  { plan: "Free", records: "1,000 per base", automations: "100 runs/mo", history: "2 weeks", seats: "Up to 5 editors", verdict: "Hits limits faster than you think" },
-  { plan: "Team (was Plus)", records: "50,000 per base", automations: "25,000 runs/mo", history: "6 months", seats: "Per seat pricing starts", verdict: "Covers most real workflows" },
-  { plan: "Business (was Pro)", records: "125,000 per base", automations: "100,000 runs/mo", history: "1 year", seats: "Per seat, same price", verdict: "For Interface Designer and SSO" },
-  { plan: "Enterprise", records: "500,000 per base", automations: "500,000 runs/mo", history: "3 years", seats: "Custom pricing", verdict: "When you need audit logs and compliance" },
+  { plan: "Free", records: "1,000 per base", automations: "100 runs/mo", history: "2 weeks", verdict: "Hits limits faster than you expect" },
+  { plan: "Team", records: "50,000 per base", automations: "25,000 runs/mo", history: "6 months", verdict: "Covers most real workflows" },
+  { plan: "Business", records: "125,000 per base", automations: "100,000 runs/mo", history: "1 year", verdict: "Needed for Interface sharing and SSO" },
+  { plan: "Enterprise", records: "500,000 per base", automations: "500,000 runs/mo", history: "3 years", verdict: "Custom pricing, for compliance-heavy orgs" },
 ];
 
 const sections = [
   {
     heading: "The per-seat model is Airtable's biggest complaint",
-    body: `The highest-voted post on the Airtable subreddit at time of writing is about per-user pricing. The second most popular category of posts is people asking how to avoid the cost spiral.
+    body: `The most upvoted post in the Airtable subreddit for months was a straightforward complaint about per-user pricing. Not a bug report. Not a feature request. Just frustration that every person who needs access to a base costs money.
 
-Airtable charges per editor seat. That means every person who needs to add or modify records costs money at Team plan and above. Viewers and commenters also cost seats on paid plans, which surprises people who assumed read-only access would be free.
+Airtable charges per editor seat. That covers everyone who adds or modifies records. On most paid plans, read-only users cost seats too, which surprises people who assumed view access would be free.
 
-For a five-person team that all actively uses Airtable, the per-seat cost is predictable. For an agency managing 20 clients who each need access, or a company with 50 employees where only 10 use Airtable heavily, the model creates real friction.`,
+For a five-person team that all actively uses Airtable, the math is predictable. For an agency managing 20 clients who each need to see their project data, or a company where 50 people work in the same workspace but only 8 regularly update records, the model creates real friction.`,
   },
   {
     heading: "What actually counts toward record limits",
-    body: `The record limit applies per base, not per workspace. If you have three separate bases each with 40,000 records, you're within the 50,000 limit on Team plan even though your total workspace has 120,000 records.
+    body: `The limit is per base, not per workspace. Three bases each with 40,000 records is fine on the Team plan. Total workspace records don't matter.
 
-Deleted records don't count against your limit — but only after you empty the trash. Airtable keeps deleted records in trash for up to 30 days on free, longer on paid plans. Until you empty the trash, those records still count.
+Deleted records count until you empty the trash. Airtable keeps deleted records in the trash for up to 30 days on free, longer on paid plans. Until you empty it, those records still count against your limit. People hit record limits and can't figure out why until someone points this out.
 
-Linked records count in the table they live in, not in every table that links to them. If you have 10,000 contacts in a Contacts table and link them to projects, each contact counts once regardless of how many projects it's linked to.
+Linked records count in the table where they live, not in every table that references them. 10,000 contacts linked to 200 projects still counts as 10,000 records, not 10,000 times 200.
 
-Attachments don't count toward record limits, but they count toward your storage limit, which is separate and often overlooked.`,
+Attachments don't count toward record limits but they count toward a separate storage limit, which is easy to overlook until you start storing a lot of files.`,
   },
   {
     heading: "The free plan's real ceiling",
-    body: `1,000 records sounds like a lot until you start using Airtable for anything with real data. A CRM for a small business will hit this in weeks. A project management base with tasks, subtasks, and comments hits it in months.
+    body: `1,000 records sounds like plenty until you use Airtable for anything real. A basic CRM for a small business hits this in a few weeks. A project management base with tasks, subtasks, and comments gets there in a couple of months.
 
-The free plan's hidden limit is automations: 100 runs per month. That's roughly three automated actions per day. Any real workflow built on automations burns through this immediately.
+The hidden limit on free is automations: 100 runs per month. That's about three automated actions per day. Any workflow built on automations burns through this fast.
 
-The free plan does not include Airtable Interfaces, which means a large chunk of what makes Airtable useful as a team tool is unavailable on free. You get views, forms, and the grid — that's it.
+Airtable's Interface Designer is not available on the free plan. That's a significant chunk of what makes Airtable useful as a collaborative tool for non-builders on your team.
 
-The community consensus: free is for learning and personal use. The moment you bring a second person or build any workflow you depend on, you need to budget for the Team plan.`,
+The community's honest take: free is fine for learning and personal use. Once you bring a second person or build any workflow you depend on, you need to budget for Team.`,
   },
   {
-    heading: "The hacks people use to stay free longer",
-    body: `The subreddit has an honest thread titled "Does everyone use hacks to bypass Airtable's crazy pricing?" The short answer is yes, people do, and Airtable knows about them.
+    heading: "The workarounds people use to stay under limits",
+    body: `There is a thread in the subreddit titled something like "Does everyone use hacks to stay under Airtable's limits?" The answer from the replies is basically yes.
 
-The most common workaround is archiving. Instead of leaving old records in the active base, people export completed records to a separate archive base or CSV. This keeps record counts low on the active base while preserving history. It requires discipline and a cleanup process.
+The most common one is archiving. When records are done, export them to a separate archive base or CSV, then delete from the active base. Keeps record counts low. Requires some discipline and a regular cleanup process.
 
-Some teams split their data across multiple bases to stay under per-base limits. This works but creates a different problem: linked records don't work across bases, so your relational data model breaks.
+Some teams split data across multiple bases to stay under per-base limits. This works until you need linked records across those bases, at which point things get complicated. Synced tables solve this but add their own complexity and require a paid plan.
 
-Synced tables (a feature on paid plans anyway) solve the cross-base problem but introduce sync delays and complexity.
-
-The honest answer: if you're doing meaningful work in Airtable and you're playing games with record counts, the Team plan is probably worth it and the workarounds cost more in time than the subscription.`,
+The honest assessment: if you're spending real time managing record counts, the Team plan probably costs less than the hours you're burning on workarounds.`,
   },
   {
-    heading: "When to leave Airtable over pricing",
-    body: `There are legitimate cases where Airtable's pricing model is the wrong fit and you should switch.
+    heading: "When the pricing model is the wrong fit",
+    body: `There are real cases where Airtable's pricing doesn't work and switching makes sense.
 
-If you have more than 15 to 20 external collaborators who need to interact with data — clients, contractors, partners — the per-seat cost becomes hard to justify. Tools like Notion (more generous seats), Google Sheets (free), or a portal layer like Softr on top of Airtable are worth evaluating.
+If you have more than 15 or 20 external collaborators who need to interact with data, the per-seat cost adds up fast. Softr or a similar portal tool on top of Airtable, or switching to Notion (more generous seat model), are worth pricing out.
 
-If you're a solo user or small team who primarily needs a spreadsheet with some structure, Google Sheets with strong formulas or Notion databases at their free tier likely covers your needs for free.
+If your use case is primarily a spreadsheet with some structure, Google Sheets at its free tier probably covers your needs without the cost.
 
-If your use case is pure project management without relational data, Monday.com's pricing may work out cheaper at mid-size team scale with better built-in reporting.
+If you're doing pure project management without relational data, Monday.com at mid-size team scale may work out cheaper with better built-in reporting.
 
-The case for staying is the data model. If you've built linked tables, rollups, and automations that depend on Airtable's relational structure, recreating that elsewhere is a real cost. The pricing is high, but what you get is a real database with a good interface, not a spreadsheet.`,
+The case for staying is the data model. If you've built linked tables, rollups, and automations that depend on Airtable's relational structure, recreating that elsewhere has a real cost. The pricing is high. What you get for it is a real database with a decent interface, not a spreadsheet pretending to be one.`,
   },
 ];
 
@@ -89,18 +87,17 @@ export default function PricingPage() {
             Airtable Pricing Reality Check
           </h1>
           <p style={{ fontSize: "17px", color: "var(--ink-2)", lineHeight: 1.7, margin: "0 0 12px" }}>
-            What the pricing page doesn&apos;t tell you. Which limits you hit first, and when the per-seat model stops making sense.
+            What the pricing page doesn&apos;t tell you. Which limits you actually hit first, and when the per-seat model stops making sense.
           </p>
           <span style={{ fontSize: "13px", color: "var(--ink-3)" }}>5 min read</span>
         </section>
 
-        {/* Plan comparison table */}
         <div className="observe-reveal" style={{ background: "var(--card)", border: "1px solid var(--border)", borderRadius: "var(--radius-lg)", overflow: "hidden", marginBottom: "56px" }}>
           <div style={{ overflowX: "auto" as const }}>
             <table style={{ width: "100%", borderCollapse: "collapse" as const, fontSize: "13px" }}>
               <thead>
                 <tr style={{ background: "var(--bg-2)" }}>
-                  {["Plan", "Records / base", "Automations", "Revision history", "Seats", "Verdict"].map(h => (
+                  {["Plan", "Records / base", "Automations", "History", "Verdict"].map(h => (
                     <th key={h} style={{ padding: "12px 16px", textAlign: "left" as const, fontWeight: 700, color: "var(--ink-3)", textTransform: "uppercase" as const, letterSpacing: "0.07em", fontSize: "11px", borderBottom: "1px solid var(--border)", whiteSpace: "nowrap" as const }}>{h}</th>
                   ))}
                 </tr>
@@ -112,7 +109,6 @@ export default function PricingPage() {
                     <td style={{ padding: "14px 16px", color: "var(--ink-2)" }}>{row.records}</td>
                     <td style={{ padding: "14px 16px", color: "var(--ink-2)" }}>{row.automations}</td>
                     <td style={{ padding: "14px 16px", color: "var(--ink-2)" }}>{row.history}</td>
-                    <td style={{ padding: "14px 16px", color: "var(--ink-2)" }}>{row.seats}</td>
                     <td style={{ padding: "14px 16px", color: "var(--ink-3)", fontStyle: "italic" }}>{row.verdict}</td>
                   </tr>
                 ))}
