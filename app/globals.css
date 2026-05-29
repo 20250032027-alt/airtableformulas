@@ -27,9 +27,9 @@
   --accent: #E8754A;
   --accent-2: #F0956E;
   --accent-subtle: #2A1A0E;
-  --border: #2A2620;
-  --border-2: #3A342C;
-  --card: #181610;
+  --border: #2C2820;
+  --border-2: #3C342C;
+  --card: #191610;
 }
 
 * { box-sizing: border-box; }
@@ -42,6 +42,40 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Force all surfaces that need dark mode */
+[data-theme="dark"] input,
+[data-theme="dark"] textarea,
+[data-theme="dark"] select {
+  background: var(--card);
+  color: var(--ink);
+  border-color: var(--border);
+}
+
+/* Table alternating rows in dark mode */
+[data-theme="dark"] tr:nth-child(even) td {
+  background: var(--bg-2) !important;
+}
+[data-theme="dark"] tr:nth-child(odd) td {
+  background: var(--card) !important;
+}
+
+/* Complexity badge overrides for dark mode */
+[data-theme="dark"] span[style*="#E8F5E9"],
+[data-theme="dark"] div[style*="#E8F5E9"] {
+  background: #1A3A1A !important;
+  color: #6FCF97 !important;
+}
+[data-theme="dark"] span[style*="#FFF8E1"],
+[data-theme="dark"] div[style*="#FFF8E1"] {
+  background: #2A2010 !important;
+  color: #F2C94C !important;
+}
+[data-theme="dark"] span[style*="#FEEBE2"],
+[data-theme="dark"] div[style*="#FEEBE2"] {
+  background: #2A1208 !important;
+  color: #EB8A70 !important;
 }
 
 @keyframes fadeUp {
@@ -83,27 +117,4 @@ body {
 @media (min-width: 769px) {
   .show-mobile   { display: none !important; }
   .hidden-mobile { display: flex !important; }
-}
-
-/* Dark mode explicit overrides for elements that don't pick up CSS vars automatically */
-[data-theme="dark"] code {
-  color: var(--accent) !important;
-}
-
-[data-theme="dark"] .formula-card-bg {
-  background: var(--bg-2) !important;
-}
-
-/* Complexity badges in dark mode */
-[data-theme="dark"] [style*="#E8F5E9"] {
-  background: #1A3A1A !important;
-  color: #6FCF97 !important;
-}
-[data-theme="dark"] [style*="#FFF8E1"] {
-  background: #2A2010 !important;
-  color: #F2C94C !important;
-}
-[data-theme="dark"] [style*="#FEEBE2"] {
-  background: #2A1208 !important;
-  color: #EB8A70 !important;
 }

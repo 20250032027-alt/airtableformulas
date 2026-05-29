@@ -1,0 +1,71 @@
+"use client";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import DarkModeToggle from "@/components/DarkModeToggle";
+import ScrollReveal from "@/components/ScrollReveal";
+import Link from "next/link";
+
+export default function Page() {
+  return (
+    <>
+      <ScrollReveal />
+      <Navbar />
+      <DarkModeToggle />
+      <main style={{ maxWidth: "760px", margin: "0 auto", padding: "0 24px" }}>
+        <section style={{ paddingTop: "120px", paddingBottom: "48px" }}>
+          <Link href="/guides" style={{ display: "inline-flex", alignItems: "center", gap: "6px", fontSize: "13px", color: "var(--ink-3)", textDecoration: "none", marginBottom: "24px" }}
+            onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "var(--accent)"; }}
+            onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "var(--ink-3)"; }}
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M12 19l-7-7 7-7" /></svg>
+            All guides
+          </Link>
+          <div style={{ display: "inline-flex", alignItems: "center", gap: "6px", background: "#1A3A6A18", borderRadius: "999px", padding: "4px 12px", marginBottom: "16px" }}>
+            <span style={{ fontSize: "11px", fontWeight: 700, color: "#1A3A6A", textTransform: "uppercase" as const, letterSpacing: "0.1em" }}>Power user</span>
+          </div>
+          <h1 style={{ fontSize: "clamp(32px, 5vw, 52px)", fontWeight: 800, letterSpacing: "-0.04em", lineHeight: 1.1, color: "var(--ink)", margin: "0 0 16px" }}>
+            Scripting in Airtable
+          </h1>
+          <p style={{ fontSize: "17px", color: "var(--ink-2)", lineHeight: 1.7, margin: "0 0 12px" }}>
+            When formulas aren't enough. What Airtable's script block can and can't do, and five scripts worth copying.
+          </p>
+          <span style={{ fontSize: "13px", color: "var(--ink-3)" }}>9 min read</span>
+        </section>
+        <article style={{ paddingBottom: "96px" }}>
+          
+          <section className="observe-reveal" style={{ marginBottom: "48px" }}>
+            <h2 style={{ fontSize: "22px", fontWeight: 700, letterSpacing: "-0.03em", color: "var(--ink)", margin: "0 0 16px", lineHeight: 1.3 }}>
+              What scripting is and when you need it
+            </h2>
+            <p style={{ fontSize: "16px", color: "var(--ink-2)", lineHeight: 1.75, margin: "0 0 16px" }}>Airtable's scripting feature lets you run JavaScript in a sandbox attached to your base. You can read records, create records, update fields, and make HTTP requests to external APIs. It runs either on demand (you click Run) or as an action inside an automation.</p>
+              <p style={{ fontSize: "16px", color: "var(--ink-2)", lineHeight: 1.75, margin: "0 0 16px" }}>You need scripting when: you want to update dozens of records based on a condition, your formula would need to be recursive or stateful, you want to call an external API and write the result back to a field, or you need to do something across multiple tables that automations can't chain together cleanly.</p>
+          </section>
+          <section className="observe-reveal" style={{ marginBottom: "48px" }}>
+            <h2 style={{ fontSize: "22px", fontWeight: 700, letterSpacing: "-0.03em", color: "var(--ink)", margin: "0 0 16px", lineHeight: 1.3 }}>
+              What scripting can not do
+            </h2>
+            <p style={{ fontSize: "16px", color: "var(--ink-2)", lineHeight: 1.75, margin: "0 0 16px" }}>Scripts can't run in the background on a schedule without an automation trigger. They can't access external storage directly (files, databases) without an API call. They can't run longer than 30 seconds before timing out. They can't create or delete tables, only read and write records.</p>
+              <p style={{ fontSize: "16px", color: "var(--ink-2)", lineHeight: 1.75, margin: "0 0 16px" }}>Scripts also don't have access to environment variables, so any API keys you use need to be hardcoded in the script or passed in as input variables. For sensitive keys, input variables are the right approach.</p>
+          </section>
+          <section className="observe-reveal" style={{ marginBottom: "48px" }}>
+            <h2 style={{ fontSize: "22px", fontWeight: 700, letterSpacing: "-0.03em", color: "var(--ink)", margin: "0 0 16px", lineHeight: 1.3 }}>
+              Five scripts worth copying
+            </h2>
+            <p style={{ fontSize: "16px", color: "var(--ink-2)", lineHeight: 1.75, margin: "0 0 16px" }}>Deduplicate records: find all records where a field value appears more than once, keep the oldest, mark the rest for deletion. Saves hours of manual cleanup.</p>
+              <p style={{ fontSize: "16px", color: "var(--ink-2)", lineHeight: 1.75, margin: "0 0 16px" }}>Batch update a field: when you want to change a formula-based value to a static one across thousands of records, a script can read each record, calculate the value, and write it back as a plain text or number field.</p>
+              <p style={{ fontSize: "16px", color: "var(--ink-2)", lineHeight: 1.75, margin: "0 0 16px" }}>Generate a slug from a title: take a Name field, lowercase it, replace spaces with hyphens, strip special characters, write it to a Slug field. Useful for content and URL generation.</p>
+              <p style={{ fontSize: "16px", color: "var(--ink-2)", lineHeight: 1.75, margin: "0 0 16px" }}>Call an external API per record: loop through records, make a fetch() call with field values, write the response back. Used for geocoding addresses, enriching contact data, or calling your own internal API.</p>
+              <p style={{ fontSize: "16px", color: "var(--ink-2)", lineHeight: 1.75, margin: "0 0 16px" }}>Cross-table sync: find records in Table A that match records in Table B by a shared identifier, then update fields in one table based on values in the other. Airtable's native sync is read-only; a script can do bidirectional updates.</p>
+          </section>
+          <div className="observe-reveal" style={{ borderTop: "1px solid var(--border)", paddingTop: "32px" }}>
+            <Link href="/guides" style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontSize: "15px", color: "var(--accent)", textDecoration: "none", fontWeight: 500 }}>
+              Browse all guides
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+            </Link>
+          </div>
+        </article>
+      </main>
+      <Footer />
+    </>
+  );
+}

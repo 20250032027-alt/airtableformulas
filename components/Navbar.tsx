@@ -18,207 +18,166 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handler);
   }, []);
 
+  // Close mobile menu on resize
+  useEffect(() => {
+    const handler = () => { if (window.innerWidth > 768) setOpen(false); };
+    window.addEventListener("resize", handler);
+    return () => window.removeEventListener("resize", handler);
+  }, []);
+
   return (
     <>
-      <nav
-        style={{
-          position: "fixed",
-          top: "20px",
-          left: "50%",
-          transform: "translateX(-50%)",
-          zIndex: 100,
-          width: "calc(100% - 40px)",
-          maxWidth: "900px",
-          backgroundColor: scrolled ? "rgba(253,251,247,0.92)" : "rgba(253,251,247,0.7)",
-          backdropFilter: "blur(20px)",
-          WebkitBackdropFilter: "blur(20px)",
-          border: "1px solid var(--border)",
-          borderRadius: "999px",
-          padding: "10px 20px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          transition: "all 0.5s cubic-bezier(0.32,0.72,0,1)",
-          boxShadow: scrolled ? "0 4px 24px rgba(0,0,0,0.06)" : "0 2px 8px rgba(0,0,0,0.04)",
-        }}
-      >
-        <Link
-          href="/"
-          style={{
-            fontFamily: "var(--font-geist-sans)",
-            fontWeight: 700,
-            fontSize: "15px",
-            color: "var(--ink)",
-            textDecoration: "none",
-            letterSpacing: "-0.02em",
-          }}
-        >
-          AirtableFormulas
-          <span style={{ color: "var(--accent)", marginLeft: "1px" }}>.com</span>
+      <style>{`
+        .nav-pill {
+          position: fixed;
+          top: 20px;
+          left: 50%;
+          transform: translateX(-50%);
+          z-index: 100;
+          width: calc(100% - 40px);
+          max-width: 900px;
+          background: var(--bg);
+          border: 1px solid var(--border);
+          border-radius: 999px;
+          padding: 10px 20px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          transition: box-shadow 0.4s ease, border-color 0.4s ease;
+        }
+        .nav-pill.scrolled {
+          box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+          border-color: var(--border-2);
+        }
+        .nav-logo {
+          font-weight: 700;
+          font-size: 15px;
+          color: var(--ink);
+          text-decoration: none;
+          letter-spacing: -0.02em;
+        }
+        .nav-logo span { color: var(--accent); }
+        .nav-link {
+          font-size: 13px;
+          color: var(--ink-2);
+          text-decoration: none;
+          padding: 6px 14px;
+          border-radius: 999px;
+          transition: background 0.2s ease, color 0.2s ease;
+          font-weight: 450;
+        }
+        .nav-link:hover {
+          background: var(--bg-2);
+          color: var(--ink);
+        }
+        .nav-cta {
+          font-size: 13px;
+          font-weight: 600;
+          color: #fff !important;
+          background: var(--accent);
+          padding: 7px 18px;
+          border-radius: 999px;
+          text-decoration: none;
+          margin-left: 4px;
+          transition: background 0.2s ease, transform 0.2s ease;
+        }
+        .nav-cta:hover {
+          background: var(--accent-2);
+          transform: scale(1.02);
+        }
+        .nav-links-desktop {
+          display: flex;
+          gap: 4px;
+          align-items: center;
+        }
+        .nav-hamburger {
+          background: none;
+          border: none;
+          cursor: pointer;
+          padding: 8px;
+          display: none;
+        }
+        .nav-bar {
+          display: block;
+          width: 20px;
+          height: 1.5px;
+          background: var(--ink);
+          transition: all 0.3s cubic-bezier(0.32,0.72,0,1);
+          margin: 4px 0;
+        }
+        .nav-mobile-overlay {
+          position: fixed;
+          inset: 0;
+          z-index: 90;
+          background: var(--bg);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+        }
+        .nav-mobile-link {
+          font-size: 28px;
+          font-weight: 700;
+          color: var(--ink);
+          text-decoration: none;
+          letter-spacing: -0.03em;
+          padding: 8px 0;
+          opacity: 0;
+          transform: translateY(16px);
+        }
+        @media (max-width: 768px) {
+          .nav-links-desktop { display: none !important; }
+          .nav-hamburger { display: block !important; }
+        }
+        @media (min-width: 769px) {
+          .nav-hamburger { display: none !important; }
+          .nav-links-desktop { display: flex !important; }
+        }
+      `}</style>
+
+      <nav className={`nav-pill${scrolled ? " scrolled" : ""}`}>
+        <Link href="/" className="nav-logo">
+          AirtableFormulas<span>.com</span>
         </Link>
 
-        {/* Desktop links */}
-        <div
-          style={{
-            display: "flex",
-            gap: "4px",
-            alignItems: "center",
-          }}
-          className="hidden-mobile"
-        >
+        <div className="nav-links-desktop">
           {links.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              style={{
-                fontSize: "13px",
-                color: "var(--ink-2)",
-                textDecoration: "none",
-                padding: "6px 14px",
-                borderRadius: "999px",
-                transition: "all 0.25s cubic-bezier(0.32,0.72,0,1)",
-                fontWeight: 450,
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.backgroundColor = "var(--bg-2)";
-                (e.currentTarget as HTMLElement).style.color = "var(--ink)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.backgroundColor = "transparent";
-                (e.currentTarget as HTMLElement).style.color = "var(--ink-2)";
-              }}
-            >
+            <Link key={l.href} href={l.href} className="nav-link">
               {l.label}
             </Link>
           ))}
-          <Link
-            href="/formula-builder"
-            style={{
-              fontSize: "13px",
-              fontWeight: 600,
-              color: "#fff",
-              backgroundColor: "var(--accent)",
-              padding: "7px 18px",
-              borderRadius: "999px",
-              textDecoration: "none",
-              marginLeft: "4px",
-              transition: "all 0.25s cubic-bezier(0.32,0.72,0,1)",
-              display: "flex",
-              alignItems: "center",
-              gap: "6px",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLElement).style.backgroundColor = "var(--accent-2)";
-              (e.currentTarget as HTMLElement).style.transform = "scale(1.02)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLElement).style.backgroundColor = "var(--accent)";
-              (e.currentTarget as HTMLElement).style.transform = "scale(1)";
-            }}
-          >
+          <Link href="/formula-builder" className="nav-cta">
             Try Builder
           </Link>
         </div>
 
-        {/* Mobile hamburger */}
         <button
+          className="nav-hamburger"
           onClick={() => setOpen(!open)}
           aria-label={open ? "Close menu" : "Open menu"}
-          style={{
-            background: "none",
-            border: "none",
-            cursor: "pointer",
-            padding: "8px",
-            display: "none",
-          }}
-          className="show-mobile"
         >
-          <div style={{ position: "relative", width: "20px", height: "16px" }}>
-            <span
-              style={{
-                position: "absolute",
-                width: "20px",
-                height: "1.5px",
-                backgroundColor: "var(--ink)",
-                top: open ? "7px" : "0",
-                transform: open ? "rotate(45deg)" : "none",
-                transition: "all 0.3s cubic-bezier(0.32,0.72,0,1)",
-              }}
-            />
-            <span
-              style={{
-                position: "absolute",
-                width: "20px",
-                height: "1.5px",
-                backgroundColor: "var(--ink)",
-                top: "7px",
-                opacity: open ? 0 : 1,
-                transition: "all 0.3s cubic-bezier(0.32,0.72,0,1)",
-              }}
-            />
-            <span
-              style={{
-                position: "absolute",
-                width: "20px",
-                height: "1.5px",
-                backgroundColor: "var(--ink)",
-                top: open ? "7px" : "14px",
-                transform: open ? "rotate(-45deg)" : "none",
-                transition: "all 0.3s cubic-bezier(0.32,0.72,0,1)",
-              }}
-            />
-          </div>
+          <span className="nav-bar" style={{ transform: open ? "translateY(5.5px) rotate(45deg)" : "none" }} />
+          <span className="nav-bar" style={{ opacity: open ? 0 : 1 }} />
+          <span className="nav-bar" style={{ transform: open ? "translateY(-5.5px) rotate(-45deg)" : "none" }} />
         </button>
       </nav>
 
-      {/* Mobile overlay */}
       {open && (
-        <div
-          style={{
-            position: "fixed",
-            inset: 0,
-            zIndex: 90,
-            backgroundColor: "rgba(253,251,247,0.97)",
-            backdropFilter: "blur(24px)",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: "8px",
-          }}
-        >
-          {links.map((l, i) => (
+        <div className="nav-mobile-overlay" onClick={() => setOpen(false)}>
+          {[...links, { label: "Try Builder", href: "/formula-builder" }].map((l, i) => (
             <Link
               key={l.href}
               href={l.href}
+              className="nav-mobile-link"
               onClick={() => setOpen(false)}
-              style={{
-                fontSize: "28px",
-                fontWeight: 600,
-                color: "var(--ink)",
-                textDecoration: "none",
-                letterSpacing: "-0.03em",
-                opacity: 0,
-                transform: "translateY(16px)",
-                animation: `fadeUp 0.5s cubic-bezier(0.32,0.72,0,1) ${i * 0.07 + 0.1}s forwards`,
-              }}
+              style={{ animation: `fadeUp 0.4s cubic-bezier(0.32,0.72,0,1) ${i * 0.07 + 0.05}s forwards` }}
             >
               {l.label}
             </Link>
           ))}
         </div>
       )}
-
-      <style>{`
-        @media (max-width: 768px) {
-          .hidden-mobile { display: none !important; }
-          .show-mobile { display: block !important; }
-        }
-        @media (min-width: 769px) {
-          .show-mobile { display: none !important; }
-          .hidden-mobile { display: flex !important; }
-        }
-      `}</style>
     </>
   );
 }
