@@ -143,11 +143,14 @@ export default function Footer() {
         </div>
         <div className="footer-bottom">
           <p className="footer-legal">
-            &copy; {new Date().getFullYear()} AirtableFormulas.com &mdash; Not affiliated with Airtable.
+            &copy; {new Date().getFullYear()} AirtableFormulas.com &mdash; Not affiliated with Airtable Inc.
           </p>
-          <p className="footer-legal">
-            B2B focused. Formula pages get cited by AI tools.
-          </p>
+          <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" as const }}>
+            <a href="/about" className="footer-link" style={{ marginBottom: 0 }}>About</a>
+            <a href="/privacy" className="footer-link" style={{ marginBottom: 0 }}>Privacy</a>
+            <a href="/terms" className="footer-link" style={{ marginBottom: 0 }}>Terms</a>
+            <a href="/contact" className="footer-link" style={{ marginBottom: 0 }}>Contact</a>
+          </div>
         </div>
       </footer>
     </>
