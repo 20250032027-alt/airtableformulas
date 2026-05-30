@@ -5,6 +5,7 @@ import DarkModeToggle from "@/components/DarkModeToggle";
 import ScrollReveal from "@/components/ScrollReveal";
 import Link from "next/link";
 import { useState } from "react";
+import YouTubeLinks from "@/components/YouTubeLinks";
 
 const patterns = [
   { trigger: "Record created", action: "Send Slack message", tool: "Native", complexity: "Low", notes: "Works out of the box. Use the built-in Slack action." },
@@ -56,6 +57,12 @@ const decisionPoints = [
     answer: "Native (now supported) or Zapier",
     reason: "Airtable added webhook triggers in 2024. For older setups or more complex webhook parsing, Zapier is more flexible.",
   },
+];
+
+const youtubeVideos = [
+  { title: "Airtable Automation for Beginners — Updated for 2025", channel: "YouTube", url: "https://www.youtube.com/watch?v=xmFRkqbdQdI" },
+  { title: "5 Airtable Automations You Can Build in 30 Minutes", channel: "YouTube", url: "https://www.youtube.com/watch?v=ysYtEEVP3dk" },
+  { title: "Mastering Airtable Automations: Advanced Techniques for 2025", channel: "YouTube", url: "https://www.youtube.com/watch?v=Wwse2qNxuW0" },
 ];
 
 export default function AutomationsPage() {
@@ -114,6 +121,10 @@ export default function AutomationsPage() {
               </div>
             ))}
           </div>
+        </section>
+
+        <section style={{ paddingBottom: "32px" }}>
+          <YouTubeLinks videos={youtubeVideos} />
         </section>
 
         {/* Patterns table */}

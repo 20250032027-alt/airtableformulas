@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import DarkModeToggle from "@/components/DarkModeToggle";
 import ScrollReveal from "@/components/ScrollReveal";
 import Link from "next/link";
+import YouTubeLinks from "@/components/YouTubeLinks";
 
 const rows = [
   { feature: "Data model", airtable: "Relational tables with linked records", notion: "Pages with inline databases" },
@@ -41,6 +42,10 @@ const verdictSections = [
     ],
     color: "#1A4A8A",
   },
+];
+
+const youtubeVideos = [
+  { title: "Airtable Tutorial: A-Z Guide [2025]", channel: "YouTube", url: "https://www.youtube.com/watch?v=cnvB7vsYo5I" },
 ];
 
 export default function AirtableVsNotionPage() {
@@ -108,6 +113,8 @@ export default function AirtableVsNotionPage() {
             </table>
           </div>
         </div>
+
+        <YouTubeLinks videos={youtubeVideos} />
 
         <article style={{ paddingBottom: "80px" }}>
           {[

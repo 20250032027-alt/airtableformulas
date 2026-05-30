@@ -56,6 +56,13 @@ The only real option for sensitive fields is to put that data in a separate base
   },
 ];
 
+const faqs = [
+  { q: "Can I hide specific fields from certain collaborators?", a: "Not at the data level. Airtable does not support field-level permissions. Any Editor can create a new view and see all fields in the base. What you can do is hide fields in a shared view link — whoever accesses the link via URL only sees what the view shows. But collaborators with base access can always unhide fields." },
+  { q: "Does view-only access cost a seat?", a: "On most paid plans, yes. This is Airtable's most complained-about pricing issue. The workaround most teams use is shared view links (free, read-only, no account needed) or Softr/Stacker for building client portals where external users log in without needing an Airtable seat." },
+  { q: "Can I share an Airtable interface without giving someone base access?", a: "Yes, on Business plan and above. You can share an Interface Designer interface to specific people by email. They get viewer access to the interface only and do not need a full collaborator seat. This is the cleanest option for giving clients or external stakeholders a limited view without paying per seat." },
+  { q: "What is the difference between Editor and Creator access?", a: "Editors can add, edit, and delete records. Creators can also modify the base structure: add tables, create or delete fields, and change field types. Only give Creator access to people who are actively building the base. An accidental field deletion or type change by a Creator can break formulas and automations across the entire base." },
+];
+
 export default function PermissionsPage() {
   return (
     <>
@@ -107,6 +114,43 @@ export default function PermissionsPage() {
               </div>
             ))}
           </div>
+
+
+      {/* FAQ Section - plain HTML for AI and SEO crawlers */}
+      <section style={{ paddingBottom: "80px" }}>
+        <h2 className="observe-reveal" style={{ fontSize: "24px", fontWeight: 700, letterSpacing: "-0.03em", color: "var(--ink)", margin: "0 0 24px" }}>
+          Common questions
+        </h2>
+        <div style={{ display: "flex", flexDirection: "column" as const, gap: "2px" }}>
+          {faqs.map((faq, i) => (
+            <div
+              key={i}
+              className="observe-reveal"
+              itemScope
+              itemType="https://schema.org/Question"
+              style={{
+                background: "var(--card)",
+                border: "1px solid var(--border)",
+                borderRadius: "var(--radius-md)",
+                padding: "20px 24px",
+                transitionDelay: `${i * 0.04}s`,
+              }}
+            >
+              <h3
+                itemProp="name"
+                style={{ margin: "0 0 10px", fontSize: "15px", fontWeight: 700, color: "var(--ink)", letterSpacing: "-0.02em", lineHeight: 1.4 }}
+              >
+                {faq.q}
+              </h3>
+              <div itemScope itemType="https://schema.org/Answer" itemProp="acceptedAnswer">
+                <p itemProp="text" style={{ margin: 0, fontSize: "14px", color: "var(--ink-2)", lineHeight: 1.7 }}>
+                  {faq.a}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
 
           <div className="observe-reveal" style={{ borderTop: "1px solid var(--border)", paddingTop: "32px" }}>
             <p style={{ fontSize: "13px", fontWeight: 700, color: "var(--ink-3)", textTransform: "uppercase" as const, letterSpacing: "0.1em", marginBottom: "16px" }}>Related</p>

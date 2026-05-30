@@ -4,6 +4,18 @@ import Footer from "@/components/Footer";
 import DarkModeToggle from "@/components/DarkModeToggle";
 import ScrollReveal from "@/components/ScrollReveal";
 import Link from "next/link";
+import YouTubeLinks from "@/components/YouTubeLinks";
+
+const faqs = [
+  { q: "When should I build an Interface instead of using a View?", a: "Build an interface when you want to combine data from multiple tables on one screen, control exactly which fields are visible and editable, or give someone a simplified experience without exposing the full base. Use a view when the person needs full grid access or when filtering and sorting in a standard view is enough." },
+  { q: "Can I trigger an automation from an Interface?", a: "Yes. Interface Designer has a Button component that triggers an automation when clicked. This is one of the most powerful combinations in Airtable: an interface gives a non-technical user a clean UI, and the button fires an automation behind the scenes without them needing to touch the base directly." },
+  { q: "What changed in the Interface Designer in the 2024 redesign?", a: "The main practical change was interface sharing. You can now share an interface to specific people by email without giving them full base access, and they do not need an Airtable account for read-only access. The layout editor also changed significantly, moving some component settings to different locations." },
+];
+
+const youtubeVideos = [
+  { title: "Airtable Interfaces: Updated for 2025", channel: "YouTube", url: "https://www.youtube.com/watch?v=kwsQGRzpAqI" },
+  { title: "Airtable 2024: Step-by-Step Guide to Build Efficient Interfaces", channel: "YouTube", url: "https://www.youtube.com/watch?v=faYgT7858Rg" },
+];
 
 export default function Page() {
   return (
@@ -69,6 +81,43 @@ export default function Page() {
               <p style={{ fontSize: "16px", color: "var(--ink-2)", lineHeight: 1.75, margin: "0 0 16px" }}>The main practical change: the way you share interfaces changed. You can now share an interface to specific people via email without giving them full base access. This is significant for client portals and limited-access views. They don't need an Airtable account for read-only access.</p>
               <p style={{ fontSize: "16px", color: "var(--ink-2)", lineHeight: 1.75, margin: "0 0 16px" }}>The editing layout also changed. If you built interfaces before late 2024 and they look different after a login, that's the redesign. Some component settings moved around.</p>
           </section>
+
+      {/* FAQ Section - plain HTML for AI and SEO crawlers */}
+      <section style={{ paddingBottom: "80px" }}>
+        <h2 className="observe-reveal" style={{ fontSize: "24px", fontWeight: 700, letterSpacing: "-0.03em", color: "var(--ink)", margin: "0 0 24px" }}>
+          Common questions
+        </h2>
+        <div style={{ display: "flex", flexDirection: "column" as const, gap: "2px" }}>
+          {faqs.map((faq, i) => (
+            <div
+              key={i}
+              className="observe-reveal"
+              itemScope
+              itemType="https://schema.org/Question"
+              style={{
+                background: "var(--card)",
+                border: "1px solid var(--border)",
+                borderRadius: "var(--radius-md)",
+                padding: "20px 24px",
+                transitionDelay: `${i * 0.04}s`,
+              }}
+            >
+              <h3
+                itemProp="name"
+                style={{ margin: "0 0 10px", fontSize: "15px", fontWeight: 700, color: "var(--ink)", letterSpacing: "-0.02em", lineHeight: 1.4 }}
+              >
+                {faq.q}
+              </h3>
+              <div itemScope itemType="https://schema.org/Answer" itemProp="acceptedAnswer">
+                <p itemProp="text" style={{ margin: 0, fontSize: "14px", color: "var(--ink-2)", lineHeight: 1.7 }}>
+                  {faq.a}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
           <div className="observe-reveal" style={{ borderTop: "1px solid var(--border)", paddingTop: "32px" }}>
             <Link href="/guides" style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontSize: "15px", color: "var(--accent)", textDecoration: "none", fontWeight: 500 }}>
               Browse all guides

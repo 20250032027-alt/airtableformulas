@@ -95,6 +95,12 @@ If you have records that change rarely (quarterly updates, annual catalog refres
   },
 ];
 
+const faqs = [
+  { q: "Does Airtable have a built-in translate function like Google Sheets?", a: "No. Google Sheets has had =GOOGLETRANSLATE() for years, free and instant. Airtable's equivalent is the AI field type, which arrived in 2024 and costs AI credits per run. For free translation in Airtable, the most practical option is an automation that calls the Google Translate API and writes the result back to a field." },
+  { q: "How do I keep a translated field in sync when the source text changes?", a: "Set your automation trigger to fire when the source field is updated specifically, not just when any field changes. This way the translation only reruns when the text you care about changes. Both the Airtable AI field and a Google Translate API automation will rerun when the source field updates." },
+  { q: "Can I translate an entire Airtable base to another language?", a: "The most practical free approach: export the table as CSV, open it in Google Sheets, use =GOOGLETRANSLATE() on the columns you need, then import the translated CSV back into Airtable. This is a one-time operation and does not stay in sync, but it costs nothing and handles bulk translation well." },
+];
+
 export default function TranslationPage() {
   return (
     <>

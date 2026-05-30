@@ -5,6 +5,12 @@ import DarkModeToggle from "@/components/DarkModeToggle";
 import ScrollReveal from "@/components/ScrollReveal";
 import Link from "next/link";
 
+const faqs = [
+  { q: "What actually happens when Airtable hits the record limit?", a: "Airtable does not delete your data. Everything stays readable. What stops working is the ability to add new records. Anyone who tries to create a new row gets an error. You need to either upgrade your plan, delete records and empty the trash, or archive data to another base before new records can be added." },
+  { q: "Can I back up my Airtable base?", a: "Yes. Airtable has a built-in snapshot feature that creates a full backup of your base at a specific point in time. When you restore a snapshot, Airtable creates a new copy of the base as it existed at that moment. You can also export any table as a CSV from the grid view." },
+  { q: "Do records in linked tables each count separately?", a: "Yes. Each record counts in the table where it lives. A contact linked to 50 projects counts as 1 record in the Contacts table, not 50. The record limit is per base, not per workspace, so you can have multiple bases each approaching the limit independently." },
+];
+
 export default function Page() {
   return (
     <>
@@ -62,6 +68,43 @@ export default function Page() {
               <p style={{ fontSize: "16px", color: "var(--ink-2)", lineHeight: 1.75, margin: "0 0 16px" }}>If your base has tens of thousands of records from years ago that nobody looks at, archiving is worth the one-time effort. A clean base is easier to work with at any record count.</p>
               <p style={{ fontSize: "16px", color: "var(--ink-2)", lineHeight: 1.75, margin: "0 0 16px" }}>The community thread titled 'Done pretending Airtable is a real backend' is worth reading if you're starting to hit limits regularly. At some scale, a proper database is the right tool.</p>
           </section>
+
+      {/* FAQ Section - plain HTML for AI and SEO crawlers */}
+      <section style={{ paddingBottom: "80px" }}>
+        <h2 className="observe-reveal" style={{ fontSize: "24px", fontWeight: 700, letterSpacing: "-0.03em", color: "var(--ink)", margin: "0 0 24px" }}>
+          Common questions
+        </h2>
+        <div style={{ display: "flex", flexDirection: "column" as const, gap: "2px" }}>
+          {faqs.map((faq, i) => (
+            <div
+              key={i}
+              className="observe-reveal"
+              itemScope
+              itemType="https://schema.org/Question"
+              style={{
+                background: "var(--card)",
+                border: "1px solid var(--border)",
+                borderRadius: "var(--radius-md)",
+                padding: "20px 24px",
+                transitionDelay: `${i * 0.04}s`,
+              }}
+            >
+              <h3
+                itemProp="name"
+                style={{ margin: "0 0 10px", fontSize: "15px", fontWeight: 700, color: "var(--ink)", letterSpacing: "-0.02em", lineHeight: 1.4 }}
+              >
+                {faq.q}
+              </h3>
+              <div itemScope itemType="https://schema.org/Answer" itemProp="acceptedAnswer">
+                <p itemProp="text" style={{ margin: 0, fontSize: "14px", color: "var(--ink-2)", lineHeight: 1.7 }}>
+                  {faq.a}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
           <div className="observe-reveal" style={{ borderTop: "1px solid var(--border)", paddingTop: "32px" }}>
             <Link href="/guides" style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontSize: "15px", color: "var(--accent)", textDecoration: "none", fontWeight: 500 }}>
               Browse all guides

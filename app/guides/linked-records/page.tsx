@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import DarkModeToggle from "@/components/DarkModeToggle";
 import ScrollReveal from "@/components/ScrollReveal";
 import Link from "next/link";
+import YouTubeLinks from "@/components/YouTubeLinks";
 
 const sections = [
   {
@@ -56,6 +57,18 @@ Don't link for static reference data that never changes and never needs its own 
 
 The right signal for linked records: you need to update data in one place and have it reflect everywhere, or you need to aggregate across multiple records connected to a parent.`,
   },
+];
+
+const faqs = [
+  { q: "Why is my Lookup field showing blank values?", a: "A blank Lookup almost always means one of three things: the record is not linked to anything yet, the field you are trying to look up is empty in the linked record, or the linked record field is pointing to the wrong table. Check the link first before troubleshooting the Lookup formula itself." },
+  { q: "Can I link records across different Airtable bases?", a: "No. Linked records only work within the same base. If you need data from another base, use Airtable's Sync feature to pull a read-only copy of a table into your working base, then link to that synced table." },
+  { q: "What is the difference between a Lookup field and a Rollup field?", a: "A Lookup pulls a single value from the linked record into the current table. A Rollup runs a calculation (SUM, COUNT, MAX, etc.) across all linked records and returns one aggregated result. If you want to see a specific field from a linked record, use Lookup. If you want to total or count across many linked records, use Rollup." },
+  { q: "Why does Airtable create a link field in the other table automatically?", a: "Airtable always creates a two-way link. When you link Table A to Table B, Table B automatically gets a field showing which Table A records link to each Table B record. You cannot turn this off. Name both sides clearly from the start so the reverse link field makes sense to anyone looking at Table B." },
+];
+
+const youtubeVideos = [
+  { title: "Airtable Basics: Count, Lookup & Rollup Fields Explained", channel: "YouTube", url: "https://www.youtube.com/watch?v=e7mo3sLtLrM" },
+  { title: "How to Summarize Data From Linked Records in Airtable", channel: "YouTube", url: "https://www.youtube.com/watch?v=wmILnOT2I7Y" },
 ];
 
 export default function LinkedRecordsPage() {
@@ -115,6 +128,43 @@ export default function LinkedRecordsPage() {
               </div>
             ))}
           </div>
+
+
+      {/* FAQ Section - plain HTML for AI and SEO crawlers */}
+      <section style={{ paddingBottom: "80px" }}>
+        <h2 className="observe-reveal" style={{ fontSize: "24px", fontWeight: 700, letterSpacing: "-0.03em", color: "var(--ink)", margin: "0 0 24px" }}>
+          Common questions
+        </h2>
+        <div style={{ display: "flex", flexDirection: "column" as const, gap: "2px" }}>
+          {faqs.map((faq, i) => (
+            <div
+              key={i}
+              className="observe-reveal"
+              itemScope
+              itemType="https://schema.org/Question"
+              style={{
+                background: "var(--card)",
+                border: "1px solid var(--border)",
+                borderRadius: "var(--radius-md)",
+                padding: "20px 24px",
+                transitionDelay: `${i * 0.04}s`,
+              }}
+            >
+              <h3
+                itemProp="name"
+                style={{ margin: "0 0 10px", fontSize: "15px", fontWeight: 700, color: "var(--ink)", letterSpacing: "-0.02em", lineHeight: 1.4 }}
+              >
+                {faq.q}
+              </h3>
+              <div itemScope itemType="https://schema.org/Answer" itemProp="acceptedAnswer">
+                <p itemProp="text" style={{ margin: 0, fontSize: "14px", color: "var(--ink-2)", lineHeight: 1.7 }}>
+                  {faq.a}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
 
           <div className="observe-reveal" style={{ borderTop: "1px solid var(--border)", paddingTop: "32px" }}>
             <p style={{ fontSize: "13px", fontWeight: 700, color: "var(--ink-3)", textTransform: "uppercase" as const, letterSpacing: "0.1em", marginBottom: "16px" }}>Related</p>

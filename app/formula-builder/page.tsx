@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import FormulaBuilder from "@/components/FormulaBuilder";
 import ScrollReveal from "@/components/ScrollReveal";
 import DarkModeToggle from "@/components/DarkModeToggle";
+import YouTubeLinks from "@/components/YouTubeLinks";
 
 const categories = [
   { name: "Date & Time", examples: ["Business days between dates", "Next Monday from today", "Age from birthdate", "Quarter from a date"] },
@@ -11,6 +12,11 @@ const categories = [
   { name: "Conditional", examples: ["Show overdue if past due date", "If checkbox is checked show Done", "Assign tier based on revenue", "Flag if value is empty"] },
   { name: "Math & Numbers", examples: ["Percentage of total", "Round to 2 decimal places", "Cap a value at a maximum", "Average of linked records"] },
   { name: "Lookup & Rollup", examples: ["Count records where status is Done", "Sum amounts from linked table", "Latest date from linked records", "Unique values from linked field"] },
+];
+
+const youtubeVideos = [
+  { title: "Airtable Formulas: What They Are and How to Write Formulas with AI", channel: "YouTube", url: "https://www.youtube.com/watch?v=7qBEKQ-BIRg" },
+  { title: "How to ADD a FORMULA in Airtable (Step by Step) 2025", channel: "YouTube", url: "https://www.youtube.com/watch?v=KVmOn9iQuaw" },
 ];
 
 export default function FormulaBuilderPage() {
@@ -33,6 +39,10 @@ export default function FormulaBuilderPage() {
             You tell it what you need. It writes the Airtable formula. Copy, paste, done.
             Works for date math, conditional logic, text manipulation, and rollups.
           </p>
+        </section>
+
+        <section style={{ paddingBottom: "32px" }}>
+          <YouTubeLinks videos={youtubeVideos} />
         </section>
 
         <section style={{ paddingBottom: "64px" }} className="observe-reveal">

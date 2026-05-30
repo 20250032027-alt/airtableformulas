@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
 import DarkModeToggle from "@/components/DarkModeToggle";
 import Link from "next/link";
+import YouTubeLinks from "@/components/YouTubeLinks";
 
 const categories = [
   {
@@ -62,6 +63,12 @@ const categories = [
     description: "Multi-select parsing, count selected options, join values.",
     topFormulas: ["Count multi-select options", "Join array values", "Check if option selected"],
   },
+];
+
+const youtubeVideos = [
+  { title: "How to Create Any Type of Formulas in Airtable (2026 Full Guide)", channel: "YouTube", url: "https://www.youtube.com/watch?v=fOPDIe7Xf-I" },
+  { title: "10 Essential Airtable Formulas You Need To Know", channel: "YouTube", url: "https://www.youtube.com/watch?v=wy2pruvEHYw" },
+  { title: "Advanced Airtable Formulas: 7 Functions That Save You Hours", channel: "YouTube", url: "https://www.youtube.com/watch?v=5PgHw2EoxNc" },
 ];
 
 export default function FormulasPage() {

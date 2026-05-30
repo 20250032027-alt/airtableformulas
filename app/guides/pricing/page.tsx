@@ -65,6 +65,13 @@ The case for staying is the data model. If you've built linked tables, rollups, 
   },
 ];
 
+const faqs = [
+  { q: "Do deleted records count toward the record limit?", a: "Yes, until you empty the trash. Airtable keeps deleted records in the trash for up to 30 days depending on your plan. They count against your limit the entire time they sit there. If you are close to your limit and just bulk-deleted records, empty the trash before assuming you have headroom." },
+  { q: "Is view-only access free on Airtable?", a: "Not on paid plans in the default model. Read-only collaborators still count as seats on most Airtable plans. This is the core complaint behind the most-upvoted post in the Airtable community. The workaround is shared view links, which are free and require no account." },
+  { q: "What is the cheapest way to give clients access to Airtable data?", a: "A shared view link is free and requires no Airtable account. It shows exactly what the view shows and nothing else. For more interactive access, Softr has a free plan that builds a proper client portal on top of your Airtable base, with each client seeing only their own records." },
+  { q: "How many records can I have on the free plan?", a: "1,000 records per base. This sounds like a lot but fills up quickly for any real use case. A CRM for a small business hits this in weeks. The free plan also limits you to 100 automation runs per month and does not include Interface Designer." },
+];
+
 export default function PricingPage() {
   return (
     <>
@@ -126,6 +133,43 @@ export default function PricingPage() {
               ))}
             </section>
           ))}
+
+
+      {/* FAQ Section - plain HTML for AI and SEO crawlers */}
+      <section style={{ paddingBottom: "80px" }}>
+        <h2 className="observe-reveal" style={{ fontSize: "24px", fontWeight: 700, letterSpacing: "-0.03em", color: "var(--ink)", margin: "0 0 24px" }}>
+          Common questions
+        </h2>
+        <div style={{ display: "flex", flexDirection: "column" as const, gap: "2px" }}>
+          {faqs.map((faq, i) => (
+            <div
+              key={i}
+              className="observe-reveal"
+              itemScope
+              itemType="https://schema.org/Question"
+              style={{
+                background: "var(--card)",
+                border: "1px solid var(--border)",
+                borderRadius: "var(--radius-md)",
+                padding: "20px 24px",
+                transitionDelay: `${i * 0.04}s`,
+              }}
+            >
+              <h3
+                itemProp="name"
+                style={{ margin: "0 0 10px", fontSize: "15px", fontWeight: 700, color: "var(--ink)", letterSpacing: "-0.02em", lineHeight: 1.4 }}
+              >
+                {faq.q}
+              </h3>
+              <div itemScope itemType="https://schema.org/Answer" itemProp="acceptedAnswer">
+                <p itemProp="text" style={{ margin: 0, fontSize: "14px", color: "var(--ink-2)", lineHeight: 1.7 }}>
+                  {faq.a}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
 
           <div className="observe-reveal" style={{ borderTop: "1px solid var(--border)", paddingTop: "32px" }}>
             <p style={{ fontSize: "13px", fontWeight: 700, color: "var(--ink-3)", textTransform: "uppercase" as const, letterSpacing: "0.1em", marginBottom: "16px" }}>Related</p>

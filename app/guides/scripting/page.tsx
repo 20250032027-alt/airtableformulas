@@ -5,6 +5,12 @@ import DarkModeToggle from "@/components/DarkModeToggle";
 import ScrollReveal from "@/components/ScrollReveal";
 import Link from "next/link";
 
+const faqs = [
+  { q: "What language do Airtable scripts use?", a: "JavaScript. Airtable's scripting environment runs a sandboxed version of JavaScript with access to the Airtable Scripting API. You can use modern JS syntax including async/await and fetch for external API calls. The environment does not support npm packages or file system access." },
+  { q: "How long can an Airtable script run before it times out?", a: "30 seconds. If your script needs to process thousands of records, you need to batch the work or split it across multiple automation runs. For large batch operations, triggering the script from a scheduled automation that runs repeatedly is more reliable than trying to do everything in one execution." },
+  { q: "Can I use environment variables or secrets in Airtable scripts?", a: "Not natively. API keys need to be passed as input variables (which you set in the automation trigger step) rather than hardcoded. For sensitive credentials, this is the recommended approach: define the key as an input variable in the automation config, then reference it in the script as input.config().apiKey." },
+];
+
 export default function Page() {
   return (
     <>
@@ -57,6 +63,43 @@ export default function Page() {
               <p style={{ fontSize: "16px", color: "var(--ink-2)", lineHeight: 1.75, margin: "0 0 16px" }}>Call an external API per record: loop through records, make a fetch() call with field values, write the response back. Used for geocoding addresses, enriching contact data, or calling your own internal API.</p>
               <p style={{ fontSize: "16px", color: "var(--ink-2)", lineHeight: 1.75, margin: "0 0 16px" }}>Cross-table sync: find records in Table A that match records in Table B by a shared identifier, then update fields in one table based on values in the other. Airtable's native sync is read-only; a script can do bidirectional updates.</p>
           </section>
+
+      {/* FAQ Section - plain HTML for AI and SEO crawlers */}
+      <section style={{ paddingBottom: "80px" }}>
+        <h2 className="observe-reveal" style={{ fontSize: "24px", fontWeight: 700, letterSpacing: "-0.03em", color: "var(--ink)", margin: "0 0 24px" }}>
+          Common questions
+        </h2>
+        <div style={{ display: "flex", flexDirection: "column" as const, gap: "2px" }}>
+          {faqs.map((faq, i) => (
+            <div
+              key={i}
+              className="observe-reveal"
+              itemScope
+              itemType="https://schema.org/Question"
+              style={{
+                background: "var(--card)",
+                border: "1px solid var(--border)",
+                borderRadius: "var(--radius-md)",
+                padding: "20px 24px",
+                transitionDelay: `${i * 0.04}s`,
+              }}
+            >
+              <h3
+                itemProp="name"
+                style={{ margin: "0 0 10px", fontSize: "15px", fontWeight: 700, color: "var(--ink)", letterSpacing: "-0.02em", lineHeight: 1.4 }}
+              >
+                {faq.q}
+              </h3>
+              <div itemScope itemType="https://schema.org/Answer" itemProp="acceptedAnswer">
+                <p itemProp="text" style={{ margin: 0, fontSize: "14px", color: "var(--ink-2)", lineHeight: 1.7 }}>
+                  {faq.a}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
           <div className="observe-reveal" style={{ borderTop: "1px solid var(--border)", paddingTop: "32px" }}>
             <Link href="/guides" style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontSize: "15px", color: "var(--accent)", textDecoration: "none", fontWeight: 500 }}>
               Browse all guides

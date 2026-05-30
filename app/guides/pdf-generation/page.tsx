@@ -5,6 +5,12 @@ import DarkModeToggle from "@/components/DarkModeToggle";
 import ScrollReveal from "@/components/ScrollReveal";
 import Link from "next/link";
 
+const faqs = [
+  { q: "Does Airtable have native PDF export?", a: "No. Airtable can print a record view to PDF via the browser's print dialog, but this is not a designed PDF tool. For formatted documents like invoices, proposals, or reports, you need a third-party tool such as Carbone, Docupilot, or Zapier connected to Google Docs." },
+  { q: "What is the cheapest way to generate PDFs from Airtable?", a: "Zapier connected to Google Docs is free within Zapier's free tier (100 tasks/month). Create a Google Docs template with placeholder text, set up a Zap that triggers on a new Airtable record, fills the template with field values, and exports it as a PDF. Past 100 tasks per month, Zapier's paid plans start at around $20/month." },
+  { q: "Can I generate PDFs automatically when a record is created?", a: "Yes, using an automation. The most common setup: Airtable record created triggers a Zapier automation, Zapier sends field data to a document tool (Carbone, Docupilot, or Google Docs), the tool generates a PDF and returns a URL, Zapier writes the PDF URL back to the Airtable record. The whole process takes a few seconds." },
+];
+
 export default function Page() {
   return (
     <>
@@ -68,6 +74,43 @@ export default function Page() {
             <p style={{ fontSize: "16px", color: "var(--ink-2)", lineHeight: 1.75, margin: "0 0 16px" }}>Airtable's expanded record view has a Print option that generates a basic printable version of a record. It's not designed as a PDF tool and the output isn't styled, but for internal use or quick data exports it works.</p>
               <p style={{ fontSize: "16px", color: "var(--ink-2)", lineHeight: 1.75, margin: "0 0 16px" }}>For anything customer-facing or professional, use one of the above approaches instead.</p>
           </section>
+
+      {/* FAQ Section - plain HTML for AI and SEO crawlers */}
+      <section style={{ paddingBottom: "80px" }}>
+        <h2 className="observe-reveal" style={{ fontSize: "24px", fontWeight: 700, letterSpacing: "-0.03em", color: "var(--ink)", margin: "0 0 24px" }}>
+          Common questions
+        </h2>
+        <div style={{ display: "flex", flexDirection: "column" as const, gap: "2px" }}>
+          {faqs.map((faq, i) => (
+            <div
+              key={i}
+              className="observe-reveal"
+              itemScope
+              itemType="https://schema.org/Question"
+              style={{
+                background: "var(--card)",
+                border: "1px solid var(--border)",
+                borderRadius: "var(--radius-md)",
+                padding: "20px 24px",
+                transitionDelay: `${i * 0.04}s`,
+              }}
+            >
+              <h3
+                itemProp="name"
+                style={{ margin: "0 0 10px", fontSize: "15px", fontWeight: 700, color: "var(--ink)", letterSpacing: "-0.02em", lineHeight: 1.4 }}
+              >
+                {faq.q}
+              </h3>
+              <div itemScope itemType="https://schema.org/Answer" itemProp="acceptedAnswer">
+                <p itemProp="text" style={{ margin: 0, fontSize: "14px", color: "var(--ink-2)", lineHeight: 1.7 }}>
+                  {faq.a}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
           <div className="observe-reveal" style={{ borderTop: "1px solid var(--border)", paddingTop: "32px" }}>
             <Link href="/guides" style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontSize: "15px", color: "var(--accent)", textDecoration: "none", fontWeight: 500 }}>
               Browse all guides
