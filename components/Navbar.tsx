@@ -52,13 +52,20 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    const handler = (e: MouseEvent) => {
+    const clickHandler = (e: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
         setDropdown(null);
       }
     };
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
+    const keyHandler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setDropdown(null);
+    };
+    document.addEventListener("mousedown", clickHandler);
+    document.addEventListener("keydown", keyHandler);
+    return () => {
+      document.removeEventListener("mousedown", clickHandler);
+      document.removeEventListener("keydown", keyHandler);
+    };
   }, []);
 
   const openDropdown = (name: typeof dropdown) => {
@@ -67,7 +74,7 @@ export default function Navbar() {
   };
 
   const closeDropdown = () => {
-    timeoutRef.current = setTimeout(() => setDropdown(null), 150);
+    timeoutRef.current = setTimeout(() => setDropdown(null), 400);
   };
 
   return (
@@ -157,15 +164,26 @@ export default function Navbar() {
         }
         .dropdown-panel {
           position: fixed;
-          top: 68px;
+          top: 58px;
           background: var(--card);
           border: 1px solid var(--border);
           border-radius: var(--radius-lg);
           box-shadow: 0 12px 48px rgba(0,0,0,0.12);
           padding: 16px;
+          padding-top: 26px;
           z-index: 99;
           animation: fadeUp 0.2s cubic-bezier(0.32,0.72,0,1) forwards;
           min-width: 200px;
+        }
+        /* Invisible bridge between nav pill and dropdown - prevents gap from closing menu */
+        .dropdown-panel::before {
+          content: "";
+          position: absolute;
+          top: -18px;
+          left: 0;
+          right: 0;
+          height: 18px;
+          background: transparent;
         }
         .dropdown-link {
           display: flex;
@@ -285,7 +303,6 @@ export default function Navbar() {
           <button
             className={`nav-trigger${dropdown === "formulas" ? " active" : ""}`}
             onMouseEnter={() => openDropdown("formulas")}
-            onMouseLeave={closeDropdown}
             onClick={() => setDropdown(dropdown === "formulas" ? null : "formulas")}
             aria-expanded={dropdown === "formulas"}
           >
@@ -299,7 +316,6 @@ export default function Navbar() {
           <button
             className={`nav-trigger${dropdown === "guides" ? " active" : ""}`}
             onMouseEnter={() => openDropdown("guides")}
-            onMouseLeave={closeDropdown}
             onClick={() => setDropdown(dropdown === "guides" ? null : "guides")}
             aria-expanded={dropdown === "guides"}
           >
@@ -316,7 +332,6 @@ export default function Navbar() {
           <button
             className={`nav-trigger${dropdown === "tools" ? " active" : ""}`}
             onMouseEnter={() => openDropdown("tools")}
-            onMouseLeave={closeDropdown}
             onClick={() => setDropdown(dropdown === "tools" ? null : "tools")}
             aria-expanded={dropdown === "tools"}
           >
