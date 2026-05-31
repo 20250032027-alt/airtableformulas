@@ -37,7 +37,6 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [dropdown, setDropdown] = useState<"guides" | "formulas" | "tools" | null>(null);
-  const dropdownRef = useRef<HTMLDivElement>(null);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
@@ -52,22 +51,11 @@ export default function Navbar() {
     return () => window.removeEventListener("resize", handler);
   }, []);
 
+  // Close on Escape key only
   useEffect(() => {
-    const clickHandler = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      if (dropdownRef.current && !dropdownRef.current.contains(target)) {
-        setDropdown(null);
-      }
-    };
-    const keyHandler = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setDropdown(null);
-    };
-    document.addEventListener("mousedown", clickHandler);
-    document.addEventListener("keydown", keyHandler);
-    return () => {
-      document.removeEventListener("mousedown", clickHandler);
-      document.removeEventListener("keydown", keyHandler);
-    };
+    const handler = (e: KeyboardEvent) => { if (e.key === "Escape") setDropdown(null); };
+    document.addEventListener("keydown", handler);
+    return () => document.removeEventListener("keydown", handler);
   }, []);
 
   const openDropdown = (name: typeof dropdown) => {
@@ -295,7 +283,7 @@ export default function Navbar() {
         }
       `}</style>
 
-      <nav className={`nav-pill${scrolled ? " scrolled" : ""}`} ref={dropdownRef}>
+      <nav className={`nav-pill${scrolled ? " scrolled" : ""}`}>
         <Link href="/" className="nav-logo">
           AirtableFormulas<span>.com</span>
         </Link>
