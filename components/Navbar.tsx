@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import SiteSearch from "@/components/SiteSearch";
 
 const guides = [
   { label: "Getting Started", href: "/guides/getting-started" },
@@ -53,7 +54,10 @@ export default function Navbar() {
 
   useEffect(() => {
     const clickHandler = (e: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+      const target = e.target as HTMLElement;
+      // Don't interfere with trigger buttons - their onClick handles toggle
+      if (target.closest(".nav-trigger")) return;
+      if (dropdownRef.current && !dropdownRef.current.contains(target)) {
         setDropdown(null);
       }
     };
@@ -340,6 +344,8 @@ export default function Navbar() {
               <path d="M6 9l6 6 6-6" />
             </svg>
           </button>
+
+          <SiteSearch />
 
           <Link href="/formula-builder" className="nav-cta">
             Try Builder
