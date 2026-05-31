@@ -7,6 +7,30 @@ import Link from "next/link";
 
 const guides = [
   {
+    href: "/guides/getting-started",
+    title: "Getting Started with Airtable",
+    description: "What actually matters when you are new. Not a feature tour. How to design structure before touching the tool, the four field types that cover 90% of use cases, and why building something real beats doing tutorials.",
+    badge: "Start here",
+    badgeColor: "#2A5A1A",
+    readTime: "10 min",
+  },
+  {
+    href: "/guides/forms",
+    title: "Airtable Forms Guide",
+    description: "Native forms, Fillout, Tally, approval workflows, embedding. What works, what doesn't, and when to stop fighting the built-in form tool. Includes a feature comparison table.",
+    badge: "High demand",
+    badgeColor: "#1A4A8A",
+    readTime: "8 min",
+  },
+  {
+    href: "/guides/ai-features",
+    title: "AI Features in Airtable",
+    description: "What Airtable's AI actually does, what the community thinks of it, and how to connect Claude or GPT when the built-in features aren't enough.",
+    badge: "Hot topic",
+    badgeColor: "#3A1A6A",
+    readTime: "9 min",
+  },
+  {
     href: "/automations",
     title: "Automations Guide",
     description: "When to use native Airtable automations vs Zapier vs Make. 16 real patterns with trigger, action, tool, and setup notes. Includes a filterable decision guide.",

@@ -57,7 +57,7 @@ The only real option for sensitive fields is to put that data in a separate base
 ];
 
 const faqs = [
-  { q: "Can I hide specific fields from certain collaborators?", a: "Not at the data level. Airtable does not support field-level permissions. Any Editor can create a new view and see all fields in the base. What you can do is hide fields in a shared view link — whoever accesses the link via URL only sees what the view shows. But collaborators with base access can always unhide fields." },
+  { q: "Can I hide specific fields from certain collaborators?", a: "Not at the data level. Airtable does not support field-level permissions. Any Editor can create a new view and see all fields in the base. What you can do is hide fields in a shared view link, whoever accesses the link via URL only sees what the view shows. But collaborators with base access can always unhide fields." },
   { q: "Does view-only access cost a seat?", a: "On most paid plans, yes. This is Airtable's most complained-about pricing issue. The workaround most teams use is shared view links (free, read-only, no account needed) or Softr/Stacker for building client portals where external users log in without needing an Airtable seat." },
   { q: "Can I share an Airtable interface without giving someone base access?", a: "Yes, on Business plan and above. You can share an Interface Designer interface to specific people by email. They get viewer access to the interface only and do not need a full collaborator seat. This is the cleanest option for giving clients or external stakeholders a limited view without paying per seat." },
   { q: "What is the difference between Editor and Creator access?", a: "Editors can add, edit, and delete records. Creators can also modify the base structure: add tables, create or delete fields, and change field types. Only give Creator access to people who are actively building the base. An accidental field deletion or type change by a Creator can break formulas and automations across the entire base." },
@@ -170,6 +170,24 @@ export default function PermissionsPage() {
             </div>
           </div>
         </article>
+
+      {/* Prev / Next guide navigation */}
+      <nav className="observe-reveal" aria-label="Guide navigation" style={{ borderTop: "1px solid var(--border)", paddingTop: "32px", paddingBottom: "64px", display: "flex", justifyContent: "space-between", gap: "12px" }}>
+                <Link href="/guides/forms" style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "13px", color: "var(--ink-3)", textDecoration: "none", fontWeight: 500, padding: "10px 14px", background: "var(--card)", border: "1px solid var(--border)", borderRadius: "var(--radius-sm)", transition: "border-color 0.2s ease" }}
+          onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "var(--accent)"; }}
+          onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "var(--border)"; }}
+        >
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M12 19l-7-7 7-7" /></svg>
+          Airtable Forms
+        </Link>
+                <Link href="/guides/pricing" style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "13px", color: "var(--ink-3)", textDecoration: "none", fontWeight: 500, padding: "10px 14px", background: "var(--card)", border: "1px solid var(--border)", borderRadius: "var(--radius-sm)", transition: "border-color 0.2s ease", marginLeft: "auto" }}
+          onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "var(--accent)"; }}
+          onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "var(--border)"; }}
+        >
+          Pricing Reality
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+        </Link>
+      </nav>
       </main>
       <Footer />
     </>

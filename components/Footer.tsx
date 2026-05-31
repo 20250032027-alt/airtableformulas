@@ -15,6 +15,9 @@ const sections = [
   {
     heading: "Guides",
     links: [
+      { label: "Getting Started", href: "/guides/getting-started" },
+      { label: "Airtable Forms Guide", href: "/guides/forms" },
+      { label: "AI Features Guide", href: "/guides/ai-features" },
       { label: "Linked Records Explained", href: "/guides/linked-records" },
       { label: "Automations Guide", href: "/automations" },
       { label: "Permissions Guide", href: "/guides/permissions" },
@@ -23,6 +26,7 @@ const sections = [
       { label: "Generate PDFs", href: "/guides/pdf-generation" },
       { label: "Scripting in Airtable", href: "/guides/scripting" },
       { label: "Translation Guide", href: "/guides/translation" },
+      { label: "Field Translator Tool", href: "/tools/translator" },
       { label: "Interface Designer", href: "/guides/interfaces" },
     ],
   },

@@ -20,7 +20,7 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL("https://airtableformulas.com"),
   title: {
-    default: "AirtableFormulas.com — Formulas, Automations & Honest Alternatives",
+    default: "AirtableFormulas.com, Formulas, Automations & Honest Alternatives",
     template: "%s | AirtableFormulas.com",
   },
   description: "Stop Googling Airtable formulas. Get exact formulas, automation guides, and straight answers on when to switch tools.",
@@ -120,6 +120,16 @@ export default function RootLayout({
         <div id="main-content">
           {children}
         </div>
+        {/* AdSense: uncomment after approval and replace with real ad units
+        <div style={{display:"flex",justifyContent:"center",padding:"8px 0"}}>
+          <ins className="adsbygoogle"
+            style={{display:"block"}}
+            data-ad-client="ca-pub-7492388540350253"
+            data-ad-slot="XXXXXXXXXX"
+            data-ad-format="auto"
+            data-full-width-responsive="true" />
+        </div>
+        */}
       </body>
     </html>
   );

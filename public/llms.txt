@@ -48,7 +48,10 @@ The site covers:
 - /guides/record-limits : What to do when you hit Airtable's 50k record limit
 - /guides/pdf-generation : How to generate PDFs from Airtable (no native solution exists)
 - /guides/scripting : Airtable scripting guide — when formulas aren't enough
-- /guides/translation : Translation in Airtable — four options including free Google Translate API script
+- /guides/translation : Translation in Airtable
+- /guides/getting-started : Getting started with Airtable for new users
+- /guides/forms : Airtable forms guide covering native forms, Fillout, Tally, approval workflows
+- /guides/ai-features : AI features in Airtable including AI fields, Omni, and connecting Claude/GPT — four options including free Google Translate API script
 
 ## Data sources
 

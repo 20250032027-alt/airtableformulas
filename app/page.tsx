@@ -6,6 +6,7 @@ import AlternativePicker from "@/components/AlternativePicker";
 import ScrollReveal from "@/components/ScrollReveal";
 import DarkModeToggle from "@/components/DarkModeToggle";
 import Link from "next/link";
+import HeroLayoutToggle from "@/components/HeroLayoutToggle";
 
 const formulaCards = [
   { title: "Business Days Between Dates", category: "Date & Time", formula: "WORKDAY_DIFF({Start Date}, {End Date})", slug: "date-time" },
@@ -17,8 +18,9 @@ const formulaCards = [
 ];
 
 const contentCards = [
+  { title: "New to Airtable?", description: "Start here. What actually matters when you are new, how to design your base before touching the tool, and why structure beats features.", href: "/guides/getting-started", badge: "Start here" },
   { title: "Formula Cookbook", description: "200+ ready-to-paste formulas in 8 categories. Business days, conditional logic, rollups, text manipulation. Organized by what you're trying to do.", href: "/formulas", badge: "Most visited" },
-  { title: "Guides", description: "Linked records explained, permissions without the seat spiral, pricing reality, translation, scripting, Interface Designer, PDF generation, and record limits.", href: "/guides", badge: "8 guides" },
+  { title: "Guides", description: "Linked records, permissions, pricing reality, forms, AI features, translation, scripting, Interface Designer. Built from 800 real community posts.", href: "/guides", badge: "11 guides" },
   { title: "Alternatives", description: "Airtable vs Notion, Google Sheets, Monday.com. Tool picker that gives a real recommendation based on your use case, team size, and budget.", href: "/alternatives", badge: "Buyer intent" },
 ];
 
@@ -230,43 +232,87 @@ export default function Home() {
       <ScrollReveal />
       <Navbar />
       <DarkModeToggle />
+      <HeroLayoutToggle />
 
       <main style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 24px" }}>
 
-        {/* Hero */}
-        <section style={{ paddingTop: "140px", paddingBottom: "80px", textAlign: "center" }}>
-          <div className="hero-badge">
-            <span className="hero-badge-dot" />
-            <span className="hero-badge-text">Formulas, Automations, Honest Comparisons</span>
+        {/* Hero — class-based for layout toggle */}
+        <section className="hero-section">
+
+          {/* Left / centered text column */}
+          <div className="hero-text">
+            <div className="hero-badge" style={{ animation: "fadeUp 0.6s cubic-bezier(0.32,0.72,0,1) 0.1s both" }}>
+              <span className="hero-badge-dot" />
+              <span className="hero-badge-text">Formulas, Automations, Honest Comparisons</span>
+            </div>
+
+            <h1 className="hero-h1" style={{ fontSize: "clamp(44px, 7vw, 80px)", fontWeight: 800, letterSpacing: "-0.04em", lineHeight: 1.05, color: "var(--ink)", margin: "0 0 24px", animation: "fadeUp 0.7s cubic-bezier(0.32,0.72,0,1) 0.2s both" }}>
+              Stop Googling<br />
+              <span style={{ color: "var(--accent)" }}>Airtable formulas.</span>
+            </h1>
+
+            <p style={{ fontSize: "clamp(16px, 2vw, 20px)", color: "var(--ink-2)", lineHeight: 1.7, maxWidth: "520px", margin: "0 0 40px", animation: "fadeUp 0.7s cubic-bezier(0.32,0.72,0,1) 0.3s both" }}>
+              Every formula you actually need. Honest guide on when Airtable is not the right tool. A formula builder that works the way you think.
+            </p>
+
+            <div className="hero-actions">
+              <Link href="/formula-builder" className="btn-primary">
+                Try Formula Builder
+                <span style={{ width: "24px", height: "24px", borderRadius: "50%", background: "rgba(255,255,255,0.2)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "14px" }}>↗</span>
+              </Link>
+              <Link href="/formulas" className="btn-secondary">
+                Browse Cookbook
+              </Link>
+            </div>
+
+            <div className="hero-stats">
+              {[{ num: "200+", label: "Ready formulas" }, { num: "16", label: "Automation patterns" }, { num: "8", label: "In-depth guides" }].map((s) => (
+                <div key={s.label} style={{ textAlign: "inherit" }}>
+                  <div className="stat-num">{s.num}</div>
+                  <div className="stat-label">{s.label}</div>
+                </div>
+              ))}
+            </div>
           </div>
 
-          <h1 style={{ fontSize: "clamp(44px, 7vw, 80px)", fontWeight: 800, letterSpacing: "-0.04em", lineHeight: 1.05, color: "var(--ink)", margin: "0 0 24px", animation: "fadeUp 0.7s cubic-bezier(0.32,0.72,0,1) 0.2s both" }}>
-            Stop Googling<br />
-            <span style={{ color: "var(--accent)" }}>Airtable formulas.</span>
-          </h1>
-
-          <p style={{ fontSize: "clamp(16px, 2vw, 20px)", color: "var(--ink-2)", lineHeight: 1.7, maxWidth: "520px", margin: "0 auto 40px", animation: "fadeUp 0.7s cubic-bezier(0.32,0.72,0,1) 0.3s both" }}>
-            Every formula you actually need. Honest guide on when Airtable is not the right tool. A formula builder that works the way you think.
-          </p>
-
-          <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap", animation: "fadeUp 0.7s cubic-bezier(0.32,0.72,0,1) 0.4s both" }}>
-            <Link href="/formula-builder" className="btn-primary">
-              Try Formula Builder
-              <span style={{ width: "24px", height: "24px", borderRadius: "50%", background: "rgba(255,255,255,0.2)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "14px" }}>↗</span>
-            </Link>
-            <Link href="/formulas" className="btn-secondary">
-              Browse Cookbook
-            </Link>
-          </div>
-
-          {/* Stats */}
-          <div style={{ display: "flex", gap: "48px", justifyContent: "center", marginTop: "60px", flexWrap: "wrap", animation: "fadeUp 0.7s cubic-bezier(0.32,0.72,0,1) 0.5s both" }}>
-            {[{ num: "200+", label: "Ready formulas" }, { num: "16", label: "Automation patterns" }, { num: "8", label: "In-depth guides" }].map((s) => (
-              <div key={s.label} style={{ textAlign: "center" }}>
-                <div className="stat-num">{s.num}</div>
-                <div className="stat-label">{s.label}</div>
+          {/* Right column — only visible in asymmetric mode */}
+          <div className="hero-side">
+            <div style={{
+              background: "var(--card)",
+              border: "1px solid var(--border)",
+              borderRadius: "var(--radius-xl)",
+              padding: "28px",
+              boxShadow: "0 12px 48px rgba(0,0,0,0.08)",
+            }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "16px" }}>
+                <div style={{ width: "32px", height: "32px", borderRadius: "8px", background: "var(--accent-subtle)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="16 18 22 12 16 6" /><polyline points="8 6 2 12 8 18" />
+                  </svg>
+                </div>
+                <div>
+                  <p style={{ margin: 0, fontSize: "14px", fontWeight: 600, color: "var(--ink)" }}>Quick Formula Examples</p>
+                  <p style={{ margin: 0, fontSize: "12px", color: "var(--ink-3)" }}>Copy and paste into Airtable</p>
+                </div>
               </div>
-            ))}
+              {[
+                { label: "Business days", formula: "WORKDAY_DIFF({Start}, {End})" },
+                { label: "Overdue flag", formula: 'IF({Due Date}<TODAY(),"Overdue","On track")' },
+                { label: "Quarter", formula: '"Q"&CEILING(MONTH({Date})/3,1)' },
+                { label: "Full name", formula: 'TRIM({First}&" "&{Last})' },
+              ].map((ex) => (
+                <div key={ex.label} style={{ marginBottom: "10px" }}>
+                  <p style={{ margin: "0 0 3px", fontSize: "11px", fontWeight: 600, color: "var(--ink-3)", textTransform: "uppercase" as const, letterSpacing: "0.07em" }}>{ex.label}</p>
+                  <code style={{ display: "block", fontFamily: "var(--font-geist-mono)", fontSize: "12px", color: "var(--accent)", background: "var(--bg-2)", padding: "8px 10px", borderRadius: "6px" }}>
+                    {ex.formula}
+                  </code>
+                </div>
+              ))}
+              <Link href="/formulas" style={{ display: "flex", alignItems: "center", gap: "6px", marginTop: "14px", fontSize: "13px", color: "var(--accent)", textDecoration: "none", fontWeight: 600 }}>
+                Browse all 200+ formulas
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+              </Link>
+            </div>
           </div>
         </section>
 
@@ -316,7 +362,7 @@ export default function Home() {
             <p className="section-sub">Built from 800 real Airtable community posts.</p>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "12px" }} className="cards-grid">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "12px" }} className="cards-grid">
             {contentCards.map((card, i) => (
               <Link key={card.href} href={card.href} className="content-card observe-reveal" style={{ transitionDelay: `${i * 0.06}s` }}>
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "4px" }}>

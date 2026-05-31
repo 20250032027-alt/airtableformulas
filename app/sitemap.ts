@@ -29,6 +29,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: "/guides/pdf-generation", priority: 0.75, changeFrequency: "monthly" as const },
     { url: "/guides/scripting", priority: 0.75, changeFrequency: "monthly" as const },
     { url: "/guides/translation", priority: 0.75, changeFrequency: "monthly" as const },
+    { url: "/guides/getting-started", priority: 0.88, changeFrequency: "monthly" as const },
+    { url: "/guides/forms", priority: 0.88, changeFrequency: "monthly" as const },
+    { url: "/guides/ai-features", priority: 0.85, changeFrequency: "monthly" as const },
+    { url: "/tools/translator", priority: 0.85, changeFrequency: "monthly" as const },
   ];
 
   return routes.map((r) => ({

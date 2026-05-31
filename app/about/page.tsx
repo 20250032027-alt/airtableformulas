@@ -21,7 +21,7 @@ export default function AboutPage() {
         {[
           {
             h: "What this site is",
-            p: "AirtableFormulas.com is an independent reference for people who use Airtable and want direct answers. The formula cookbook, guides, and tool comparisons were built from analysis of real community posts — the questions people keep asking, the problems they keep running into, and the workarounds that actually work."
+            p: "AirtableFormulas.com is an independent reference for people who use Airtable and want direct answers. The formula cookbook, guides, and tool comparisons were built from analysis of real community posts, the questions people keep asking, the problems they keep running into, and the workarounds that actually work."
           },
           {
             h: "Where the content comes from",
@@ -29,7 +29,7 @@ export default function AboutPage() {
           },
           {
             h: "What we are not",
-            p: "AirtableFormulas.com is not affiliated with Airtable Inc. in any way. We don't have a referral deal with any of the tools mentioned. When a comparison says Notion or Google Sheets is the better fit for a given situation, that's because it is — not because someone paid to say so."
+            p: "AirtableFormulas.com is not affiliated with Airtable Inc. in any way. We don't have a referral deal with any of the tools mentioned. When a comparison says Notion or Google Sheets is the better fit for a given situation, that's because it is, not because someone paid to say so."
           },
           {
             h: "The formula builder",

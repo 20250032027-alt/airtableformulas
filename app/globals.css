@@ -118,3 +118,118 @@ body {
   .show-mobile   { display: none !important; }
   .hidden-mobile { display: flex !important; }
 }
+
+/* ===================== */
+/* HERO LAYOUT VARIANTS  */
+/* ===================== */
+
+/* Default: centered (no attribute or data-hero="centered") */
+.hero-section {
+  padding-top: 140px;
+  padding-bottom: 80px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-text { max-width: 640px; }
+
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  animation: fadeUp 0.7s cubic-bezier(0.32,0.72,0,1) 0.4s both;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 48px;
+  justify-content: center;
+  margin-top: 60px;
+  flex-wrap: wrap;
+  animation: fadeUp 0.7s cubic-bezier(0.32,0.72,0,1) 0.5s both;
+}
+
+/* Asymmetric variant */
+[data-hero="asymmetric"] .hero-section {
+  padding-top: 120px;
+  padding-bottom: 72px;
+  text-align: left;
+  align-items: flex-start;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+[data-hero="asymmetric"] .hero-text {
+  max-width: none;
+  grid-column: 1;
+}
+
+[data-hero="asymmetric"] .hero-badge {
+  justify-content: flex-start;
+}
+
+[data-hero="asymmetric"] .hero-actions {
+  justify-content: flex-start;
+}
+
+[data-hero="asymmetric"] .hero-stats {
+  justify-content: flex-start;
+  margin-top: 40px;
+}
+
+[data-hero="asymmetric"] .hero-side {
+  grid-column: 2;
+  display: block;
+}
+
+[data-hero="asymmetric"] .hero-side-hidden {
+  display: none;
+}
+
+/* Default hides the side panel */
+.hero-side { display: none; }
+
+/* Asymmetric: hero h1 is left-aligned, slightly smaller */
+[data-hero="asymmetric"] .hero-h1 {
+  font-size: clamp(36px, 5vw, 62px);
+}
+
+/* Layout toggle tooltip */
+.layout-toggle-label {
+  position: fixed;
+  bottom: 76px;
+  right: 72px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 5px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink-3);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 199;
+}
+
+@media (max-width: 768px) {
+  [data-hero="asymmetric"] .hero-section {
+    grid-template-columns: 1fr;
+    text-align: center;
+    align-items: center;
+  }
+  [data-hero="asymmetric"] .hero-actions,
+  [data-hero="asymmetric"] .hero-stats,
+  [data-hero="asymmetric"] .hero-badge {
+    justify-content: center;
+  }
+  [data-hero="asymmetric"] .hero-side {
+    display: none;
+  }
+}

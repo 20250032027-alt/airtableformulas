@@ -60,7 +60,7 @@ const decisionPoints = [
 ];
 
 const youtubeVideos = [
-  { title: "Airtable Automation for Beginners — Updated for 2025", channel: "YouTube", url: "https://www.youtube.com/watch?v=xmFRkqbdQdI" },
+  { title: "Airtable Automation for Beginners, Updated for 2025", channel: "YouTube", url: "https://www.youtube.com/watch?v=xmFRkqbdQdI" },
   { title: "5 Airtable Automations You Can Build in 30 Minutes", channel: "YouTube", url: "https://www.youtube.com/watch?v=ysYtEEVP3dk" },
   { title: "Mastering Airtable Automations: Advanced Techniques for 2025", channel: "YouTube", url: "https://www.youtube.com/watch?v=Wwse2qNxuW0" },
 ];
