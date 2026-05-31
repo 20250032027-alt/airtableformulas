@@ -153,26 +153,25 @@ export default function SiteSearch() {
         .search-backdrop {
           position: fixed;
           inset: 0;
-          background: rgba(0,0,0,0.4);
-          backdrop-filter: blur(4px);
+          background: rgba(0,0,0,0.12);
           z-index: 300;
           display: flex;
           align-items: flex-start;
           justify-content: center;
-          padding-top: 80px;
-          animation: fadeIn 0.15s ease forwards;
+          padding-top: 76px;
+          animation: fadeIn 0.12s ease forwards;
         }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .search-modal {
           width: 100%;
-          max-width: 600px;
+          max-width: 580px;
           margin: 0 20px;
           background: var(--card);
-          border: 1px solid var(--border-2);
+          border: 1px solid var(--border);
           border-radius: var(--radius-xl);
-          box-shadow: 0 24px 80px rgba(0,0,0,0.2);
+          box-shadow: 0 8px 40px rgba(0,0,0,0.1);
           overflow: hidden;
-          animation: slideDown 0.2s cubic-bezier(0.32,0.72,0,1) forwards;
+          animation: slideDown 0.18s cubic-bezier(0.32,0.72,0,1) forwards;
         }
         @keyframes slideDown {
           from { opacity: 0; transform: translateY(-16px); }

@@ -55,8 +55,6 @@ export default function Navbar() {
   useEffect(() => {
     const clickHandler = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      // Don't interfere with trigger buttons - their onClick handles toggle
-      if (target.closest(".nav-trigger")) return;
       if (dropdownRef.current && !dropdownRef.current.contains(target)) {
         setDropdown(null);
       }
@@ -306,8 +304,7 @@ export default function Navbar() {
           {/* Formulas dropdown */}
           <button
             className={`nav-trigger${dropdown === "formulas" ? " active" : ""}`}
-            onMouseEnter={() => openDropdown("formulas")}
-            onClick={() => setDropdown(dropdown === "formulas" ? null : "formulas")}
+            onClick={(e) => { e.stopPropagation(); setDropdown(dropdown === "formulas" ? null : "formulas"); }}
             aria-expanded={dropdown === "formulas"}
           >
             Formulas
@@ -319,8 +316,7 @@ export default function Navbar() {
           {/* Guides dropdown */}
           <button
             className={`nav-trigger${dropdown === "guides" ? " active" : ""}`}
-            onMouseEnter={() => openDropdown("guides")}
-            onClick={() => setDropdown(dropdown === "guides" ? null : "guides")}
+            onClick={(e) => { e.stopPropagation(); setDropdown(dropdown === "guides" ? null : "guides"); }}
             aria-expanded={dropdown === "guides"}
           >
             Guides
@@ -335,8 +331,7 @@ export default function Navbar() {
           {/* Tools dropdown */}
           <button
             className={`nav-trigger${dropdown === "tools" ? " active" : ""}`}
-            onMouseEnter={() => openDropdown("tools")}
-            onClick={() => setDropdown(dropdown === "tools" ? null : "tools")}
+            onClick={(e) => { e.stopPropagation(); setDropdown(dropdown === "tools" ? null : "tools"); }}
             aria-expanded={dropdown === "tools"}
           >
             Tools
@@ -368,8 +363,6 @@ export default function Navbar() {
         <div
           className="dropdown-panel"
           style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2px", minWidth: "320px" }}
-          onMouseEnter={() => openDropdown("formulas")}
-          onMouseLeave={closeDropdown}
         >
           {formulas.map((l) => (
             <Link key={l.href} href={l.href} className="dropdown-link" onClick={() => setDropdown(null)}>
@@ -391,8 +384,6 @@ export default function Navbar() {
         <div
           className="dropdown-panel"
           style={{ minWidth: "240px" }}
-          onMouseEnter={() => openDropdown("guides")}
-          onMouseLeave={closeDropdown}
         >
           {guides.map((l) => (
             <Link key={l.href} href={l.href} className="dropdown-link" onClick={() => setDropdown(null)}>
@@ -412,8 +403,6 @@ export default function Navbar() {
         <div
           className="dropdown-panel"
           style={{ minWidth: "200px" }}
-          onMouseEnter={() => openDropdown("tools")}
-          onMouseLeave={closeDropdown}
         >
           {tools.map((l) => (
             <Link key={l.href} href={l.href} className="dropdown-link" onClick={() => setDropdown(null)}>
